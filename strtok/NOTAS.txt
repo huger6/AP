@@ -1,0 +1,7 @@
+adicionar aspas ao SEPARADOR em headers
+
+mudar o include da funcoes
+
+compilar da main
+
+Problema do \n talvez possa ser corrigido alterando a função ler_linha para retornar linha -1

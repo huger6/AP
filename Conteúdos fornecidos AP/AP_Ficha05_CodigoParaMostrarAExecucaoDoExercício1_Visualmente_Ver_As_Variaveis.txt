@@ -1,0 +1,95 @@
+// Código Para Simular a Execução do exercício 1 da ficha 5 no PhytonTutor, 
+// obviamente, atribuindo os valores às coordenadas de cada ponto.
+
+#include <stdio.h>
+
+typedef struct ponto {
+    float x;
+    float y;
+} PONTO;
+
+/* Como o Pyton Tutor não reconhece a biblioteca math.h, 
+ foi necessário criar uma função para o cálculo da raiz quadrada
+ A função implementa o método de Newton (também conhecido como 
+ método de Newton-Raphson) para realizar o cálculo. 
+ Explicação:
+ Validação: A função verifica se o número é negativo. Se for, retorna -1.
+ Estimativa Inicial: Começa a estimativa da raiz quadrada como o próprio número.
+ Iteração: Usa um loop while para atualizar a estimativa até que a diferença 
+ entre a estimativa ao quadrado e o número  seja menor que a precisão definida.
+ Resultado: Retorna a estimativa final.
+ Este método é eficiente e converge rapidamente para a resposta correta.
+*/
+
+double raiz_quadrada(double numero) {
+    if (numero < 0) {
+        return -1; // Retorna -1 para indicar que a raiz não é real
+    }
+
+    double estimativa = numero; // Inicia a estimativa com o próprio número
+    double precisao = 0.00001;   // Define a precisão desejada
+
+    while ((estimativa * estimativa - numero) > precisao || (numero - estimativa * estimativa) > precisao) {
+        estimativa = (estimativa + numero / estimativa) / 2; // Atualiza a estimativa
+    }
+
+    return estimativa;
+}
+
+int main(void)
+{   
+    system("clear");
+    double numero;
+    PONTO pt1, pt2;
+    double diagonal, area;
+    printf("1.ª simulação, só com valores positivos nas coordenadas dos pontos...\n");
+    // 1.ª simulação com valores positivos nos 2 pontos
+    // especificação dos valores das coordenadas do ponto pt1
+    pt1.x=1; pt1.y=2;
+    // especificação dos valores das coordenadas do ponto pt2
+    pt2.x=7; pt2.y=9;
+
+    diagonal = raiz_quadrada((pt2.x-pt1.x)*(pt2.x-pt1.x) + (pt2.y-pt1.y)*(pt2.y-pt1.y));
+    if(diagonal== -1){
+        printf("Raiz quadrada de um número negativo não é um número real.\n");
+        return 0;
+    }
+        
+    area = abs((pt2.x-pt1.x)) * abs((pt2.y-pt1.y));
+    printf("\nNa 1.ª simulação, a diagonal do retângulo é %0.2f e a área é %0.2f",diagonal, area);
+    
+    // 2.ª simulação com quaisquer valores em cada coordenada dos 2 pontos
+
+    printf("1.ª simulação, já com valores negativos e positivos nas coordenadas dos pontos...\n");
+    // especificação dos valores das coordenadas do ponto pt1
+    pt1.x=1; pt1.y=-2;
+    // especificação dos valores das coordenadas do ponto pt2
+    pt2.x=-7; pt1.y=-10;
+
+    diagonal = raiz_quadrada((pt2.x-pt1.x)*(pt2.x-pt1.x) + (pt2.y-pt1.y)*(pt2.y-pt1.y));
+    if(diagonal== -1){
+        printf("Raiz quadrada de um número negativo não é um número real.\n");
+        return 0;
+    }
+        
+    area = abs((pt2.x-pt1.x)) * abs((pt2.y-pt1.y));
+    printf("\nNa 2.ª simulação, a diagonal do retângulo é %0.2f e a área é %0.2f",diagonal, area);
+    return 0;
+}
+
+/*
+Para calcular a área de um retângulo dados os vértices opostos em coordenadas cartesianas, você pode usar a seguinte fórmula: Area=|x2-x1| * |y2-y1|;
+
+Aqui está uma implementação em C de uma função que calcula 
+a área de um retângulo a partir das coordenadas de dois vértices:
+
+#include <stdio.h>
+#include <stdlib.h> // Para usar a função abs()
+
+// Função para calcular a área do retângulo
+double area_retangulo(int x1, int y1, int x2, int y2) {
+    double largura = abs(x2 - x1);
+    double altura = abs(y2 - y1);
+    return largura * altura;
+}
+/*

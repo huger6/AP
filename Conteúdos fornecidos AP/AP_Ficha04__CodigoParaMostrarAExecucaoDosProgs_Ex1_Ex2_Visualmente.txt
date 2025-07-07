@@ -1,0 +1,114 @@
+Código Para Simular a Execução dos Programas no PhytonTutor
+
+1)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void aplica1(int x)
+{ 
+      x=10; 
+      printf("%d\n",x);
+}
+
+
+void aplica2(int *x)
+{
+      *x=10;
+}
+
+void main()
+{
+       int n; 
+       n=5; 
+       aplica1(n); 
+       printf("%d\n",n); 
+       aplica2(&n);  
+       printf("%d\n",n);
+}
+
+
+// Ex. 2 (ex. 1-a) da Ficha de Apoio 4 anterior)
+
+#include <stdio.h>
+
+void trocaE(int x1, int x2)       /* Função que deveria trocar o valor de duas variáveis mas está errada */
+{
+  int tmp;
+  tmp = x1;
+  x1 = x2;
+  x2 = tmp;
+}
+
+
+int main()
+{
+    int a1, a2;
+    a1=10;
+    a2=20;
+    printf("\n  Antes da troca :\ta1= %d\ta2= %d\n",a1,a2);
+    trocaE(a1,a2);
+    printf("\n Depois da troca :\ta1= %d\ta2= %d ???",a1,a2);
+}
+
+// Ex. 3 (ex. 1-b) da Ficha de Apoio 4 anterior)
+
+#include <stdio.h>
+
+void troca(int *x, int *y)  // Função que troca o valor de duas variáveis
+{
+  int tmp;
+  tmp = *x;
+  *x = *y;
+  *y = tmp;
+}
+
+
+int main()
+{
+    int a1, a2;
+    a1=10;
+    a2=20;
+    printf("\n  Antes de troca :\ta1= %d\ta2= %d\n",a1,a2);
+    troca(&a1,&a2);
+    printf("\n Depois de troca :\ta1= %d\ta2= %d\n",a1,a2);
+
+}
+
+
+// Ex. 4 (junção do exercício 1-a) e 1-b) da Ficha de Apoio 4 anterior)
+
+#include <stdio.h>
+
+void trocaE(int x1, int x2)       /* Função que deveria trocar o valor de duas variáveis mas está errada */
+{
+  int tmp;
+  tmp = x1;
+  x1 = x2;
+  x2 = tmp;
+}
+
+void troca(int *x, int *y)  // Função que troca o valor de duas variáveis
+{
+  int tmp;
+  tmp = *x;
+  *x = *y;
+  *y = tmp;
+}
+
+
+
+int main()
+{
+    int a1, a2;
+    a1=10;
+    a2=20;
+    printf("\n  Antes d1 1.ª troca :\ta1= %d\ta2= %d\n",a1,a2);
+    trocaE(&a1,&a2);
+    printf("\n Depois da 1.ª troca :\ta1= %d\ta2= %d\n",a1,a2);
+    printf("\n  Antes da 2.ª troca :\ta1= %d\ta2= %d\n",a1,a2);
+    troca(&a1,&a2);
+    printf("\n Depois de troca :\ta1= %d\ta2= %d\n",a1,a2);
+
+}
+

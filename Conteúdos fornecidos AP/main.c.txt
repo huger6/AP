@@ -1,0 +1,107 @@
+//
+//  main.c
+//  MenuGenerico_Fichas
+//
+//  Created by Jorge Loureiro on 29/10/2024.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int menu(void)  //::::::::::::::::::::::::::::::::::::::::
+// função que apresenta o menu e devolve a opção seleccionada
+{
+	int opcao;
+	printf("\n   #----------------------------------------------------------------#");
+	printf("\n   |   Preprende executar a função que:                             |");
+	printf("\n   |      Perita ler as n componentes de um vector_____________(1)  |");
+	printf("\n   |      Escreva as n compoonentes de um vector_______________(2)  |");
+	printf("\n   |      Determine a posição onde está a maior valor__________(3)  |");
+	printf("\n   |                                                                |");
+	printf("\n   |                                                                |");
+	printf("\n   |                                                                |");
+	printf("\n   |                                                                |");
+	printf("\n   #----------------------------------------------------------------#");
+	printf("\n   |                           SAIR____________________________(0)  |");
+	printf("\n   #----------------------------------------------------------------#\n");
+	do
+	{
+		printf("                                             Qual a sua opcao ? ");
+		scanf("%d", &opcao);
+	} while (! (opcao >= 0 && opcao <= 3));
+	return opcao;
+}
+
+
+int main(int argc, const char * argv[]) {
+	int opcao;
+	do
+	{
+		// system("cls"); // para limpar o ecrã da janela, em Windows
+		system("clear"); // idem, em Linux e MacOS
+		opcao = menu(); // É mostrado o menu (é invocada a função menu) que mostra as funcionalidades e devolve a opção seleccionada
+		switch (opcao)
+		{
+			case 1:
+				// Colocar aqui o código correspondente ao programa criado relativo à alínea a)
+				printf("\n Opção 1 ainda não implementada!...");
+				
+				
+				break;
+			case 2:
+				// Colocar aqui o código correspondente ao programa criado relativo à alínea b)
+				printf("\n Opção 2 ainda não implementada!...");
+				
+				
+				
+				break;
+			case 3:
+				// Colocar aqui o código correspondente ao programa criado relativo à alínea c)
+				printf("\n Opção 3 ainda não implementada!...");
+			 
+			 
+			 
+				break;
+/*			case 4:
+				// Colocar aqui o código correspondente à opção 4 do menu
+				printf("\n Opção 4 ainda não implementada!...");
+		  
+		  
+		  
+				break;
+			case 5:
+				// Colocar aqui o código correspondsente à opção 5 do menu
+				printf("\n Opção 5 ainda não implementada!...");
+   
+   
+   
+   
+				break;
+			case 6:
+				// Colocar aqui o código correspondsente à opção 6 do menu
+				printf("\n Opção 6 ainda não implementada!...");
+
+
+
+				 break;
+			case 7:
+				// Colocar aqui o código correspondsente à opção 7 do menu
+				printf("\n Opção 7 ainda não implementada!...");
+
+
+
+
+				 break;
+*/
+			case '0': exit(0);
+			default: exit(0);
+		}
+		printf("\n\n");
+	} while (opcao != 0);
+	printf("Digite <enter> para terminar...");
+	getchar();
+	// system("pause"); // só em Windows
+	return 0;
+}
+

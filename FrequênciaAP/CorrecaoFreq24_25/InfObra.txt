@@ -1,0 +1,4 @@
+Azulejo na posição [0][1] tem área de 0,21
+Azulejo na posição [0][2] tem área de 0,16
+Azulejo na posição [1][1] tem área de 0,32
+Azulejo na posição [1][2] tem área de 9,25

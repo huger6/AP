@@ -1,0 +1,122 @@
+#include<stdio.h>
+#include<string.h>
+
+typedef char nome[100];
+
+void SelectionSort(nome * vet, int N)
+{
+     int i,j,posMax; 
+     nome temp; 
+     for (i= N-1; i>0; i--)
+     {
+        posMax=i;
+        for (j=0; j<=i-1;j++)
+        {
+            if (strcmp(vet[j],vet[posMax])>0)
+                posMax=j;
+        }
+        // troca de valores entre vet[i] e vet[posMax]
+        strcpy(temp,vet[i]);
+        strcpy(vet[i],vet[posMax]);
+        strcpy(vet[posMax],temp);
+    }
+}
+
+void InsertionSort(nome * vet, int N)
+{
+    int i, j;
+    nome temp;
+    for (i = 1; i < N; i++)
+    {
+        strcpy(temp,vet[i]);
+        j=i;
+        while(j>0 && strcmp(vet[j-1],temp)>0) // procura posição do elemento i
+         {
+             strcpy(vet[j],vet[j-1]); // desloca o elemento j-1para a direita
+             j--;
+          }
+          strcpy(vet[j],temp); // coloca o elemento i na posição correcta
+     }
+ }
+ 
+void FastBubbleSort(nome * vet, int N)
+{
+    int i,j, houveTroca=1;
+    nome temp;
+    for(i=0; i<N-1 && houveTroca; i++)
+    {
+        houveTroca=0;
+        for (j=0;j<N-i-1;j++)
+        {
+            // compara elementos adjacentes para ver se estão fora de ordem
+            if (strcmp(vet[j],vet[j+1])>0) // se estiverem
+            {
+               houveTroca=1;
+                strcpy(temp,vet[j]);  // troca vet[j] com vet[j+1]
+                strcpy(vet[j],vet[j+1]);
+                strcpy(vet[j+1],temp);
+            }
+        }
+    }
+}
+
+int PesquisaBinaria(nome * vet, int N, nome chave)  
+{
+   int indInf, indS, indMeio;
+   indInf = 0; 
+   indS = N-1;
+   while (indS>=indInf)
+   {
+     indMeio = (int)(indInf + indS) / 2;
+     if (strcmp(vet[indMeio],chave)==0)
+        return indMeio;
+     else
+     {
+        if (strcmp(vet[indMeio],chave)<0)
+          indInf = indMeio + 1;
+        else
+          indS = indMeio -1;
+     }
+   }
+   return -1;
+}
+
+int lerNomes(nome * vet, int N)
+{
+	FILE *f;
+	int i;
+	const char *nome = "nomes.txt";
+	f = fopen(nome, "r");
+	if (f == NULL)
+	{
+		printf("Impossível abrir ficheiro!");
+		return;
+	}
+	i=0;
+	while (!feof(f))//feof(f) devolve verdadeiro se estiver no fim do ficheiro
+	{
+		fgets(vet[i], 100, f);
+		i++;
+	}
+	fclose(f);
+	return i;
+}
+
+void escreverNomes(nome * vet, int N)
+{
+	int i;
+	for(i=0;i<N;i++)
+	printf("%s\n",vet[i]);
+}
+
+int main()
+{
+	int tam;
+	nome vetor[100];
+	tam=lerNomes(vetor,100);
+	escreverNomes(vetor,tam);
+	printf("//////////////////\n");
+	FastBubbleSort(vetor,tam);
+	escreverNomes(vetor,tam);
+	return 0;
+}

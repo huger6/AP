@@ -1,0 +1,160 @@
+//
+//  main.c
+//  Ficha8_PL2
+//
+//  Created by Jorge Loureiro on 02/12/2024.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+int menu(void)  //::::::::::::::::::::::::::::::::::::::::
+// função que apresenta o menu e devolve a opção seleccionada
+{
+	int opcao;
+	printf("\n   #----------------------------------------------------------------#");
+	printf("\n   |   Preprende executar a função que calcule:                     |");
+	printf("\n   |      O somatório de N até 1 de i__________________________(1)  |");
+	printf("\n   |      O somatório de 1 até N de i__________________________(2)  |");
+	printf("\n   |      O factorial de N_____________________________________(3)  |");
+	printf("\n   |      A potência x^n_______________________________________(4)  |");
+	printf("\n   |      Ler Ficheiro (em binário)____________________________(5)  |");
+	printf("\n   |      Gravar em ficheiro (reg.a reg. em binário)___________(6)  |");
+	printf("\n   |      Ler ficheiro (reg. a reg. em binário)________________(7)  |");
+	printf("\n   |      Gravar em Ficheiro Texto_____________________________(8)  |");
+	printf("\n   |      Gravar em Ficheiro CSV_______________________________(9)  |");
+	printf("\n   |      Importar de Fich. CSV_______________________________(10)  |");
+	printf("\n   #----------------------------------------------------------------#");
+	printf("\n   |                           SAIR____________________________(0)  |");
+	printf("\n   #----------------------------------------------------------------#\n");
+	do
+	{
+		printf("                                             Qual a sua opcao ? ");
+		scanf("%d", &opcao);
+	} while (! (opcao >= 0 && opcao <= 10));
+	return opcao;
+}
+
+int lerInteiro(char* mens){
+	int n;
+	printf("\n%s", mens);
+	scanf("%d", &n);
+	return n;
+}
+
+float lerReal(char* mens){
+	float r;
+	printf("\n%s", mens);
+	scanf("%f", &r);
+	return r;
+}
+
+// função recursiva que calcula o somatório de i=N até 1
+int soma_N_1(int i){
+	if (i==1)
+		return 1;
+	else
+		return i + soma_N_1(i - 1);
+}
+
+// função recursiva que calcula o somatório de i=1 até N
+int soma_1_N(int i, int n){
+	if (i==n)
+		return n;
+	else
+		return i + soma_1_N(i + 1, n);
+}
+
+// função recursiva que calcula o factorial de um número (3<número<10)
+int factorialN(int i){
+	if (i==1)
+		return 1;
+	else
+		return i * factorialN(i-1);
+}
+
+// função recursiva que calcula a potência x^n
+double potencia(float x, int n){
+	if (n==1)
+		return x;
+	else
+		return x * potencia(x, n-1);
+}
+
+int main(int argc, const char * argv[]) {
+	setlocale(LC_ALL, "Portuguese");
+	int opcao, a1, a2, a3, soma=0, n=0;
+	float x=0.0;
+	double resExp=0.0;
+	long valFact=0;
+	do
+	{
+		// system("cls"); // para limpar o ecrã da janela, em Windows
+		system("clear"); // idem, em Linux e MacOS
+		opcao = menu(); // É mostrado o menu (é invocada a função menu) que mostra as funcionalidades e devolve a opção seleccionada
+		switch (opcao)
+		{
+			case 1:
+				do{
+					a1=lerInteiro("Qual o valor do n? ");
+				} while (a1 < 2);
+				soma=soma_N_1(a1);
+				printf("O valor do somatório de i=%d até 1, é: %d", a1, soma);
+				break;
+			case 2:
+				do{
+					a2=lerInteiro("Qual o valor do n? ");
+				} while (a2<2);
+				soma=soma_1_N(1, a2);
+				printf("\nO valor do somatório de i=1 até %d, e: %d", a2, soma);
+				break;
+			case 3:
+				do{
+					a3=lerInteiro("Qual o valor do número de que se pretende calcular o factorial (3<n<10)? ");
+				} while (a3<4 || a3> 10);
+				valFact = factorialN(a3);
+				printf("\nO valor do factorial de %d é: %ld", a3, valFact);
+				break;
+			case 4:
+				x=lerReal("Qual o valor de x(base) (para calcular x^n)? ");
+				do{
+					n=lerInteiro("Qual o valor de n(expoente) (para calcular x^n)? ");
+				} while (n<0 || n> 15);
+				resExp = potencia(x, n);
+				printf("\nO valor de %f^%d é: %f", x, n, resExp);
+				break;
+/*			case 5:
+				nLiv=lerFichBin(estante);
+				break;
+			case 6:
+				escreverFichBinRegAReg(estante, nLiv);
+				break;
+			case 7:
+				lerFichBinRegAReg(estante, nLiv);
+				break;
+			case 8:
+				escreverFichTxt(estante, nLiv);
+				break;
+			case 9:
+				printf("\nQual é o nome do ficheiro a criar? ");
+				scanf("%s", nomeFichCsv);
+				strcat(nomeFichCsv, ".csv");
+				printf("\nQual o separador de campos pretendido? ");
+				getchar();
+				scanf("%c", &charSep);
+				escreverFichCSV(estante, nLiv, nomeFichCsv, charSep);
+				break;
+ */
+			case '0': exit(0);
+			default: exit(0);
+		}
+		printf("\n\n");
+	} while (opcao != 0);
+	
+	printf("Digite <enter> para terminar...");
+	getchar();
+	// system("pause"); // só em Windows
+	return 0;
+}
