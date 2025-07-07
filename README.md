@@ -1,4 +1,4 @@
-# Código e exercícios de AP na ESTGV 1ºANO 1ºSEMESTRE
+# Código e exercícios de Algoritmos e Programação na ESTGV 25-25
 
 O projeto pode ser encontrado em https://github.com/huger6/TrabalhoAP
 
